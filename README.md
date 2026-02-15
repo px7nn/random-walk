@@ -9,8 +9,8 @@ Multiple colored lines start from the center of the screen and perform a bounded
 * Persistent drawing using a texture as canvas
 
 ### Screenshots
-<img width="717" height="741" alt="image" src="https://github.com/user-attachments/assets/output1" />
-<img width="717" height="738" alt="image" src="https://github.com/user-attachments/assets/output2" />
+<img width="717" height="741" alt="image" src=".\assets\screenshots\output1.png" />
+<img width="717" height="738" alt="image" src=".\assets\screenshots\output2.png" />
 
 
 
