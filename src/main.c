@@ -77,7 +77,7 @@ int main(int argc, char *args[]){
 
         SDL_RenderTexture(ren, canvas, NULL, NULL);
         SDL_RenderPresent(ren);
-        SDL_Delay(5);
+        SDL_Delay(16);
     }
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(win);
