@@ -28,10 +28,20 @@ void LineInitial(Line *l){
 
 void RandXY(Line *l){
     int ranD = (rand() % 2)? 1:-1;
-    if(rand() % 2) // 1 => x, 0=>y
-        l->x += ranD *l->len;
-    else
-        l->y += ranD *l->len;
+    if(rand() % 2){ // 1 => x, 0=>y
+        int newX = l->x + ranD *l->len;
+        if(newX >= 0 && newX <= WIDTH)
+            l->x = newX;
+        else
+            l->x -= ranD *l->len;
+    }
+    else{
+        int newY = l->y + ranD *l->len;
+        if(newY>=0 && newY<=HEIGHT)
+            l->y = newY;
+        else
+            l->y -= ranD *l->len;
+    }
 }
 
 
@@ -65,12 +75,14 @@ int main(int argc, char *args[]){
     int running = 1;
     while(running){
         SDL_Event e;
-        if(SDL_PollEvent(&e)){
+        if(SDL_PollEvent(&e))
             if(e.type == SDL_EVENT_QUIT)
                 running = 0;
-        }
+        
         SDL_SetRenderTarget(ren, canvas);
+
         Update(line);
+
         SDL_SetRenderTarget(ren, NULL);
         SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
         SDL_RenderClear(ren);
