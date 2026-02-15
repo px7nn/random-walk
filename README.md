@@ -1,70 +1,62 @@
-# SDL3 – Basic Setup Directory
-A minimal **SDL3 setup template** for C using **MinGW (GCC)** on Windows.  
-This repository provides a clean starting structure for building SDL3 projects.
+# 🎨 SDL3 Random Walk Lines
+A simple generative art experiment built with **SDL3** in C.  
+Multiple colored lines start from the center of the screen and perform a bounded random walk, creating evolving abstract patterns.
+
+## 📸 Preview
+* 4 independent lines
+* Random colors
+* Bounded movement (no going outside window)
+* Persistent drawing using a texture as canvas
+
+### Screenshots
+<img width="717" height="741" alt="image" src="https://github.com/user-attachments/assets/output1" />
+<img width="717" height="738" alt="image" src="https://github.com/user-attachments/assets/output2" />
+
+
+
+## 🧠 How It Works
+
+Each frame:
+1. A random direction is chosen (X or Y axis)
+2. The line moves either positive or negative
+3. Boundary checks prevent leaving the screen
+4. A line is drawn from old position to new position
+5. Drawing accumulates over time on a texture
+
+This creates a **generative art random-walk effect**.
 
 ## 📁 Project Structure
-
 ```
-SDL3-Basic-Setup/
+random-walk/
 │
-├── SDL/           # SDL3 headers and library files
-├── src/           # Your C source files (main.c, etc.)
+├── SDL/          # SDL3 headers and library files
+├── src/          # Your C source files (main.c)
 ├── .gitignore
-├── Makefile       # Build configuration using MinGW
-├── SDL3.dll       # Required runtime DLL
-```
----
-
-## ⚙️ Requirements
-
-* Windows OS
-* MinGW (GCC)
-* SDL3 Development Library
-
-  
-Make sure `gcc` is available in your system PATH:
-```
-gcc --version
+├── Makefile      # Build configuration (MinGW)
+└── SDL3.dll      # Required runtime DLL
 ```
 
-## 🛠️ Build Instructions
-From the project root directory:
+## 🛠 Requirements
+
+* **MinGW (GCC)** – for compiling the project
+* **SDL3 development library** – included inside this repository (SDL/ folder)
+
+## 🔨 Build
+
+From project root:
 ```
 mingw32-make
 ```
-This will generate:
+Or manually:
 ```
-main.exe
-```
-## ▶️ Run the Program
-After building:
-```
-.\main.exe
-```
-
-> ⚠️ **Important:**
-> `SDL3.dll` must be in the **same directory** as `main.exe`, or Windows will fail to launch the program.
-
-
-## 🔧 Manual Compile Command (Without Makefile)
-
-If you prefer compiling manually:
-
-```bash
 gcc src/main.c -ISDL/include -LSDL/lib -lmingw32 -lSDL3 -o main.exe
 ```
 
-### Explanation of Flags
+## ▶ Run
+Make sure `SDL3.dll` is in the same directory as `main.exe`, then:
+```
+./main.exe
+```
 
-* `-ISDL/include` → Include SDL header files
-* `-LSDL/lib` → Link SDL library directory
-* `-lmingw32` → Required MinGW system library
-* `-lSDL3` → Link against SDL3
-
----
-
-## 🚀 Purpose
-This repository serves as:
-* A clean SDL3 starter template
-* A reference for correct folder structure
-* A minimal working setup for learning SDL3
+## 💡 Author
+Built as part of learning **SDL3 graphics programming in C**.
