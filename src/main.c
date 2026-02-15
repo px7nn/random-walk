@@ -9,7 +9,7 @@
 SDL_Window *win = NULL;
 SDL_Renderer *ren = NULL;
 
-const int nL = 2;
+const int nL = 4;
 
 typedef struct{
     int x, y, len;
