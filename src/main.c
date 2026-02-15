@@ -3,11 +3,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define HEIGHT 420
-#define WIDTH 640
+#define HEIGHT 720
+#define WIDTH 720
 
 SDL_Window *win = NULL;
 SDL_Renderer *ren = NULL;
+SDL_Texture *canvas = NULL;
 
 const int nL = 4;
 
@@ -42,17 +43,22 @@ void DrawAndUpdateLine(Line *l){
 }
 
 void Update(Line l[]){
-    for(int i=0; i<nL; i++){
+    for(int i=0; i<nL; i++)
         DrawAndUpdateLine(&l[i]);
-    }
 }
 
 int main(int argc, char *args[]){
     srand(time(NULL));
-    if(!SDL_CreateWindowAndRenderer("Main-Screen", WIDTH, HEIGHT, SDL_WINDOW_RESIZABLE, &win, &ren)){
+    if(!SDL_CreateWindowAndRenderer("Main-Screen", WIDTH, HEIGHT, SDL_WINDOW_MAXIMIZED, &win, &ren)){
         SDL_Log("Couldn't Create Window: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
+    canvas = SDL_CreateTexture(ren, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, WIDTH, HEIGHT);
+    SDL_SetRenderTarget(ren, canvas);
+    SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
+    SDL_RenderClear(ren);
+    SDL_SetRenderTarget(ren, NULL);
+
     Line line[nL];
     for(int i=0; i<nL; i++) LineInitial(&line[i]);
 
@@ -63,9 +69,15 @@ int main(int argc, char *args[]){
             if(e.type == SDL_EVENT_QUIT)
                 running = 0;
         }
+        SDL_SetRenderTarget(ren, canvas);
         Update(line);
+        SDL_SetRenderTarget(ren, NULL);
+        SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
+        SDL_RenderClear(ren);
+
+        SDL_RenderTexture(ren, canvas, NULL, NULL);
         SDL_RenderPresent(ren);
-        SDL_Delay(20);
+        SDL_Delay(5);
     }
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(win);
