@@ -30,7 +30,7 @@ This creates a **generative art random-walk effect**.
 random-walk/
 │
 ├── SDL/          # SDL3 headers and library files
-├── src/          # Your C source files (main.c)
+├── src/          # Source files (main.c)
 ├── .gitignore
 ├── Makefile      # Build configuration (MinGW)
 └── SDL3.dll      # Required runtime DLL
