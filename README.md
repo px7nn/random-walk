@@ -3,7 +3,7 @@ A simple generative art experiment built with **SDL3** in C.
 Multiple colored lines start from the center of the screen and perform a bounded random walk, creating evolving abstract patterns.
 
 ## 📸 Preview
-* 4 independent lines
+* Independent lines
 * Random colors
 * Bounded movement (no going outside window)
 * Persistent drawing using a texture as canvas
